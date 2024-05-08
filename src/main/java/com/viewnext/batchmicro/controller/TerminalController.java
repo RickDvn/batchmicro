@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.viewnext.batchmicro.model.Terminal;
 import com.viewnext.batchmicro.service.TerminalService;
 
+/**
+ * Controller de los terminales, se accede con: " localhost:8080/terminales "
+ */
 @RestController
 @RequestMapping("/terminales")
 public class TerminalController {

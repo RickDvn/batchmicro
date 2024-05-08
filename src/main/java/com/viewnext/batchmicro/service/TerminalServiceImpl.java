@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import com.viewnext.batchmicro.model.Terminal;
 import com.viewnext.batchmicro.reader.TerminalReader;
 
+/**
+ * Implementacion de la interfaz de terminales (TerminalService)
+ */
 @Service
 public class TerminalServiceImpl implements TerminalService {
 

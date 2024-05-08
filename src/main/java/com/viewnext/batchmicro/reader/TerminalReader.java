@@ -16,16 +16,21 @@ import com.viewnext.batchmicro.model.Terminal;
  */
 public class TerminalReader {
 	
+	/**
+	 * Se leen los dos csv y se convienrten los datos a objetos terminal
+	 * 
+	 * @return ArrayList<Terminal> Los terminales despues de ser leidos
+	 */
 	public static ArrayList<Terminal> readCSVsTerminal() {
-		ArrayList<Terminal> terminales = new ArrayList<Terminal>();
+		ArrayList<Terminal> terminales = new ArrayList<Terminal>(); // Objeto a devolver
 		
-		HashMap<String,String[]> datStocks = readStock();
-		ArrayList<String[]> datTerminales = readTerminal();
+		HashMap<String,String[]> datStocks = readStock(); // Datos del stock
+		ArrayList<String[]> datTerminales = readTerminal(); // datos de los terminales
 		
 		String[] stockTerminal;
 		
 		for (String[] dato : datTerminales) {
-			stockTerminal = datStocks.get(dato[3]);
+			stockTerminal = datStocks.get(dato[3]); // Asociacion de datos de stock y terminal segun el id (dato[3])
 			
 			if (stockTerminal != null) {
 				terminales.add(new Terminal(Integer.parseInt(stockTerminal[1]), stockTerminal[0], Integer.parseInt(stockTerminal[2]),
@@ -37,6 +42,11 @@ public class TerminalReader {
 	}
 	
 	
+	/**
+	 * Lee el el CSV de stock y devuleve sus datos
+	 * 
+	 * @return HashMap<String,String[]> Los datos del CSV de stock
+	 */
 	private static HashMap<String,String[]> readStock() {
 		HashMap<String,String[]> datos = new HashMap<>();
 		String[] item;
@@ -54,6 +64,11 @@ public class TerminalReader {
 		return datos;
 	}
 	
+	/**
+	 * Lee el el CSV de terminales y devuleve sus datos
+	 * 
+	 * @return ArrayList<String[]> Los datos del CSV de terminales
+	 */
 	private static ArrayList<String[]> readTerminal() {
 		ArrayList<String[]> datos = new ArrayList<>();
 		String[] item;
