@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.viewnext.batchmicro"},{"l":"com.viewnext.batchmicro.controller"},{"l":"com.viewnext.batchmicro.model"},{"l":"com.viewnext.batchmicro.reader"},{"l":"com.viewnext.batchmicro.service"}];updateSearchResults();
