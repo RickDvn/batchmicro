@@ -1,11 +1,14 @@
 package com.viewnext.batchmicro.reader;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
@@ -16,16 +19,25 @@ import com.viewnext.batchmicro.model.Terminal;
  */
 public class TerminalReader {
 	
+	private static final Logger log = LoggerFactory.getLogger(TerminalReader.class);
+	
+	private TerminalReader() {
+	}
+	
 	/**
 	 * Se leen los dos csv y se convienrten los datos a objetos terminal
 	 * 
 	 * @return ArrayList<Terminal> Los terminales despues de ser leidos
 	 */
-	public static ArrayList<Terminal> readCSVsTerminal() {
-		ArrayList<Terminal> terminales = new ArrayList<Terminal>(); // Objeto a devolver
+	public static List<Terminal> readCSVsTerminal() {
+		ArrayList<Terminal> terminales = new ArrayList<>(); // Objeto a devolver
+		
+		log.info("Accediendo a los ficheros...");
 		
 		HashMap<String,String[]> datStocks = readStock(); // Datos del stock
 		ArrayList<String[]> datTerminales = readTerminal(); // datos de los terminales
+		
+		log.info("Lectura completada, procediendo a crear objetos...");
 		
 		String[] stockTerminal;
 		
@@ -37,6 +49,8 @@ public class TerminalReader {
 						Integer.parseInt(stockTerminal[3]), Integer.parseInt(stockTerminal[4]), Integer.parseInt(dato[3]), dato[1]));
 			}
 		}
+		
+		log.info("Objetos creados");
 		
 		return terminales;
 	}
@@ -50,6 +64,8 @@ public class TerminalReader {
 	private static HashMap<String,String[]> readStock() {
 		HashMap<String,String[]> datos = new HashMap<>();
 		String[] item;
+		
+		log.info("Leyendo el Stock...");
 		
 		try (CSVReader reader = new CSVReader(new FileReader("src/main/resources/data/local/stockTerminales.csv"));){
 			while ((item = reader.readNext()) != null) {
@@ -72,6 +88,8 @@ public class TerminalReader {
 	private static ArrayList<String[]> readTerminal() {
 		ArrayList<String[]> datos = new ArrayList<>();
 		String[] item;
+		
+		log.info("Leyendo los Terminales...");
 		
 		try (CSVReader reader = new CSVReader(new FileReader("src/main/resources/data/local/terminales.csv"));){
 			while ((item = reader.readNext()) != null) {
