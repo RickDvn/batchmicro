@@ -30,7 +30,7 @@ public class TerminalController {
 	 */
 	@GetMapping(value = "/getCatalogo")
 	public List<Terminal> getTerminales(){
-		log.info("Acceso a Catalogo");
+		log.info("Acceso a /getCatalogo");
 		
 		return terminalService.getterminales();
 	}
